@@ -1,0 +1,71 @@
+name: Sync DCLint version
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  repository_dispatch:
+    types: [ depup ]
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update DCLint version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get latest dclint version from npm
+        id: get_version
+        run: |
+          VERSION=$(npm show dclint version)
+          echo "Latest version is $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Extract current version from hooks
+        id: get_current
+        run: |
+          CURRENT=$(cat VERSION_DCLINT | tr -d ' \t\n\r')
+          echo "Current version is $CURRENT"
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        id: compare
+        run: |
+          if [ "${{ steps.get_version.outputs.version }}" != "${{ steps.get_current.outputs.current }}" ]; then
+            echo "Version changed"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No change"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Replace version in files
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          NEW_VERSION=${{ steps.get_version.outputs.version }}
+          # Update npm version dclint@X.Y.Z
+          sed -i "s/dclint@[0-9]\+\.[0-9]\+\.[0-9]\+/dclint@${NEW_VERSION}/g" action.yml
+          # Update docker version dclint:X.Y.Z
+          sed -i "s/zavoloklom\/dclint:[0-9]\+\.[0-9]\+\.[0-9]\+/zavoloklom\/dclint:${NEW_VERSION}/g" docker-action/Dockerfile
+          # Update version for reviewdog-action
+          sed -i "s/DCLINT_VERSION: v[0-9]\+\.[0-9]\+\.[0-9]\+/DCLINT_VERSION: ${NEW_VERSION}/g" reviewdog-action/action.yml
+          # Update VERSION_DCLINT
+          echo ${NEW_VERSION} > VERSION_DCLINT
+
+      - name: Create Pull Request
+        if: steps.compare.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "deps: bump DCLint to v${{ steps.get_version.outputs.version }}"
+          commit-message: "feat: update DCLint to v${{ steps.get_version.outputs.version }}"
+          body: |
+            Update DCLint to [v${{ steps.get_version.outputs.version }}](https://github.com/zavoloklom/docker-compose-linter/releases/tag/v${{ steps.get_version.outputs.version }})
+            Compare [v${{ steps.get_current.outputs.current }}...v${{ steps.get_version.outputs.version }}](https://github.com/zavoloklom/docker-compose-linter/compare/v${{ steps.get_current.outputs.current }}...v${{ steps.get_version.outputs.version }})
+
+            This PR is auto generated.
+          branch: chore/bump-dclint-${{ steps.get_version.outputs.version }}
+          delete-branch: true
+          labels: "dependencies"

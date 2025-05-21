@@ -1,0 +1,34 @@
+name: depup
+on:
+  schedule:
+    - cron: '14 14 * * *' # Runs at 14:14 UTC every day
+  repository_dispatch:
+    types: [ depup ]
+  workflow_dispatch:
+
+jobs:
+  reviewdog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
+        id: depup
+        with:
+          file: reviewdog-action/action.yml
+          version_name: REVIEWDOG_VERSION
+          repo: reviewdog/reviewdog
+
+      - name: Create Pull Request to update Reviewdog
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "deps: update Reviewdog to v${{ steps.depup.outputs.latest }}"
+          commit-message: "feat: update Reviewdog to v${{ steps.depup.outputs.latest }}"
+          body: |
+            Update Reviewdog to [v${{ steps.depup.outputs.latest }}](https://github.com/reviewdog/reviewdog/releases/tag/v${{ steps.depup.outputs.latest }})
+            Compare [v${{ steps.depup.outputs.current }}...v${{ steps.depup.outputs.latest }}](https://github.com/reviewdog/reviewdog/compare/v${{ steps.depup.outputs.current }}...v${{ steps.depup.outputs.latest }})
+
+            This PR is auto generated.
+          branch: chore/bump-reviewdog-${{ steps.depup.outputs.latest }}
+          delete-branch: true
+          labels: "dependencies"
