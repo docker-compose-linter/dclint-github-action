@@ -1,0 +1,121 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  code_quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.15.0'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch main branch and run commitlint
+        if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'
+        run: |
+          git fetch origin main
+          npx commitlint --from=origin/main
+
+      - name: Run linters (markdownlint)
+        run: |
+          npm run markdownlint
+
+  test-node-valid:
+    name: Node.js Action - Valid Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DCLint via npx on valid file
+        uses: ./
+        with:
+          path: ./test-data/valid/
+
+  test-node-invalid:
+    name: Node.js Action - Invalid Compose (should fail)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DCLint via npx on invalid file
+        id: dclint-node
+        continue-on-error: true
+        uses: ./
+        with:
+          path: ./test-data/
+          recursive: true
+          fix: false
+          dry-run: false
+          # TODO: Move formatters to main repo
+          formatter: ./formatter-github.js
+          max-warnings: 0
+          exclude: .github
+          disable-rule: service-keys-order
+          debug: true
+
+      - name: Assert that DCLint failed as expected
+        run: |
+          if [[ "${{ steps.dclint-node.outcome }}" == "success" ]]; then
+            echo "Expected DCLint to fail, but it succeeded"
+            exit 1
+          else
+            echo "DCLint failed as expected"
+          fi   
+
+  test-docker-valid:
+    name: Docker Action - Valid Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DCLint via docker on valid file
+        uses: ./docker-action
+        with:
+          args: '["./test-data/valid"]'
+
+  test-docker-invalid:
+    name: Docker Action - Invalid Compose (should fail)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DCLint via docker on invalid file
+        id: dclint-docker
+        continue-on-error: true
+        uses: ./docker-action
+        with:
+          # TODO: Move formatters to main repo
+          args: '["./test-data", "-r", "--debug", "-f", "./formatter-github.js"]'
+
+      - name: Assert that DCLint failed as expected
+        run: |
+          if [[ "${{ steps.dclint-docker.outcome }}" == "success" ]]; then
+            echo "Expected DCLint to fail, but it succeeded"
+            exit 1
+          else
+            echo "DCLint failed as expected"
+          fi   
+
+  test-reviewdog:
+    name: Reviewdog Action - Valid Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run DCLint via docker on valid file
+        uses: ./reviewdog-action
+        with:
+          dclint_flags: ./test-data/valid/ -r

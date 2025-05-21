@@ -1,0 +1,87 @@
+name: DCLint GitHub Action
+description: A GitHub Action for validating and enforcing best practices in Docker Compose files with DCLint
+author: Sergey Kupletsky <s.kupletsky@gmail.com>
+branding:
+  icon: check
+  color: blue
+
+inputs:
+  path:
+    description: Path(s) to file(s) or directory(ies) to lint (space-separated)
+    required: false
+    default: .
+
+  recursive:
+    description: Recursively search directories
+    required: false
+    default: 'false'
+
+  fix:
+    description: Apply automatic fixes
+    required: false
+    default: 'false'
+
+  dry-run:
+    description: Simulate fixes without saving
+    required: false
+    default: 'false'
+
+  formatter:
+    description: Output formatter (e.g. stylish, json, github)
+    required: false
+    # TODO: Move formatters to main repo
+    default: './formatter-github.js'
+
+  max-warnings:
+    description: Maximum number of warnings allowed before failure
+    required: false
+    default: '-1'
+
+  exclude:
+    description: Excludes specific files or directories from being checked (space-separated)
+    required: false
+
+  disable-rule:
+    description: Skips the execution of specific rules (space-separated)
+    required: false
+
+  debug:
+    description: Outputs debugging information to the console
+    required: false
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        args=""
+        if [[ "${{ inputs.recursive }}" == "true" ]]; then args="$args -r"; fi
+        if [[ "${{ inputs.fix }}" == "true" ]]; then args="$args --fix"; fi
+        if [[ "${{ inputs.dry-run }}" == "true" ]]; then args="$args --fix-dry-run"; fi
+        if [[ "${{ inputs.formatter }}" != "" ]]; then args="$args -f ${{ inputs.formatter }}"; fi
+        if [[ "${{ inputs.max-warnings }}" != "-1" ]]; then args="$args --max-warnings ${{ inputs.max-warnings }}"; fi
+        if [[ "${{ inputs.exclude }}" != "" ]]; then args="$args --exclude ${{ inputs.exclude }}"; fi
+        if [[ "${{ inputs.disable-rule }}" != "" ]]; then args="$args --disable-rule ${{ inputs.disable-rule }}"; fi
+        if [[ "${{ inputs.debug }}" == "true" ]]; then args="$args --debug"; fi
+
+        echo "Running: npx dclint@2.2.1 $args ${{ inputs.path }}"
+        set +e
+        npx dclint@2.2.1 $args ${{ inputs.path }}
+        exit_code=$?
+        set -e
+
+        echo "### DCLint Linting Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- Version: \`dclint@2.2.1\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Path: \`${{ inputs.path }}\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Formatter: \`${{ inputs.formatter }}\`" >> $GITHUB_STEP_SUMMARY
+
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [[ "$exit_code" == "0" ]]; then
+          echo "- Status: ✅ Success" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- Status: ❌ Failed (exit code $exit_code)" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        exit $exit_code
+      shell: bash

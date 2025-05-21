@@ -1,0 +1,50 @@
+{
+  "name": "dclint-github-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A GitHub Action for validating and enforcing best practices in Docker Compose files with DCLint.",
+  "keywords": [
+    "dclint",
+    "github-action",
+    "reviewdog"
+  ],
+  "homepage": "https://github.com/docker-compose-linter/dclint-github-action",
+  "bugs": {
+    "url": "https://github.com/docker-compose-linter/dclint-github-action/issues"
+  },
+  "repository": {
+    "url": "https://github.com/docker-compose-linter/dclint-github-action.git"
+  },
+  "funding": "https://github.com/zavoloklom#how-to-support",
+  "license": "MIT",
+  "author": "Sergey Kupletsky <s.kupletsky@gmail.com> (https://github.com/zavoloklom)",
+  "type": "module",
+  "scripts": {
+    "changelog:fix": "prettier --write \"CHANGELOG.md\" && markdownlint-cli2 --fix \"CHANGELOG.md\" && prettier --write \"CHANGELOG.md\"",
+    "commitlint": "commitlint --from=origin/main",
+    "docs:fix": "npm run prettier && npm run markdownlint:fix",
+    "markdownlint": "markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#**/node_modules\"",
+    "markdownlint:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\" \"#**/node_modules\"",
+    "prepare": "husky",
+    "prettier": "prettier --write \"**/*.md\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/commit-analyzer": "13.0.1",
+    "@semantic-release/exec": "7.1.0",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "11.0.3",
+    "@semantic-release/release-notes-generator": "14.0.3",
+    "conventional-changelog-conventionalcommits": "9.0.0",
+    "husky": "9.1.7",
+    "markdownlint-cli2": "0.18.1",
+    "prettier": "3.5.3",
+    "semantic-release": "24.2.5"
+  },
+  "engines": {
+    "node": ">=18.20.0",
+    "npm": ">=10.0.0"
+  }
+}
