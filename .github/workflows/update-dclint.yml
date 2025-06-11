@@ -50,7 +50,7 @@ jobs:
           # Update docker version dclint:X.Y.Z
           sed -i "s/zavoloklom\/dclint:[0-9]\+\.[0-9]\+\.[0-9]\+/zavoloklom\/dclint:${NEW_VERSION}/g" docker-action/Dockerfile
           # Update version for reviewdog-action
-          sed -i "s/DCLINT_VERSION: v[0-9]\+\.[0-9]\+\.[0-9]\+/DCLINT_VERSION: ${NEW_VERSION}/g" reviewdog-action/action.yml
+          sed -i "s/DCLINT_VERSION: [0-9]\+\.[0-9]\+\.[0-9]\+/DCLINT_VERSION: ${NEW_VERSION}/g" reviewdog-action/action.yml
           # Update VERSION_DCLINT
           echo ${NEW_VERSION} > VERSION_DCLINT
 
