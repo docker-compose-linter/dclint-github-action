@@ -20,7 +20,7 @@ runners).
 ### Example usage
 
 ```yaml
-- uses: zavoloklom/dclint-github-action@v1.0.0
+- uses: zavoloklom/dclint-github-action@v1.1.0
   with:
     path: ./compose/
     recursive: true
@@ -52,7 +52,7 @@ support (default in GitHub runners).
 ### Example usage
 
 ```yaml
-- uses: zavoloklom/dclint-github-action/docker-action@v1.0.0
+- uses: zavoloklom/dclint-github-action/docker-action@v1.1.0
   with:
     args: '["./compose", "-r", "--debug"]'
 ```
@@ -80,7 +80,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4.2.2
       - name: dclint
-        uses: zavoloklom/dclint-github-action/reviewdog-action@v1.0.0
+        uses: zavoloklom/dclint-github-action/reviewdog-action@v1.1.0
         with:
           reporter: github-pr-review # Default is `github-pr-check`
           dclint_flags: ./compose/ # Default is `.`
