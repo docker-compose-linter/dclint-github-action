@@ -1,5 +1,5 @@
 name: DCLint Docker Action
-description: A GitHub Action for validating and enforcing best practices in Docker Compose files with DCLint Docker Image
+description: A GitHub Action for validating and enforcing best practices in Docker Compose files with DCLint Docker Image.
 author: Sergey Kupletsky <s.kupletsky@gmail.com>
 branding:
   icon: check

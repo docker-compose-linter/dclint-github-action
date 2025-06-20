@@ -1,5 +1,5 @@
 name: DCLint GitHub Action
-description: Validate and enforce best practices in Docker Compose files using DCLint. Supports GitHub Annotations and integration with Reviewdog.
+description: Validate and enforce best practices in Docker Compose using DCLint. Supports GitHub Annotations and Reviewdog integration.
 author: Sergey Kupletsky <s.kupletsky@gmail.com>
 branding:
   icon: check

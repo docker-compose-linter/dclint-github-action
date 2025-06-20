@@ -1,5 +1,5 @@
 name: Run DCLint with Reviewdog
-description: 🐶 Run DCLint with Reviewdog on pull requests to improve code review experience
+description: 🐶 Run DCLint with Reviewdog on pull requests to improve code review experience.
 author: Sergey Kupletsky <s.kupletsky@gmail.com>
 branding:
   icon: check
