@@ -22,9 +22,9 @@ export default {
       '@semantic-release/exec',
       {
         prepareCmd: [
-          'sed -i "s|zavoloklom/dclint-github-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|zavoloklom/dclint-github-action@v${nextRelease.version}|g" README.md',
-          'sed -i "s|zavoloklom/dclint-github-action/docker-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|zavoloklom/dclint-github-action/docker-action@v${nextRelease.version}|g" README.md',
-          'sed -i "s|zavoloklom/dclint-github-action/reviewdog-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|zavoloklom/dclint-github-action/reviewdog-action@v${nextRelease.version}|g" README.md',
+          'sed -i "s|docker-compose-linter/dclint-github-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|docker-compose-linter/dclint-github-action@v${nextRelease.version}|g" README.md',
+          'sed -i "s|docker-compose-linter/dclint-github-action/docker-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|docker-compose-linter/dclint-github-action/docker-action@v${nextRelease.version}|g" README.md',
+          'sed -i "s|docker-compose-linter/dclint-github-action/reviewdog-action@v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+|docker-compose-linter/dclint-github-action/reviewdog-action@v${nextRelease.version}|g" README.md',
         ].join(' && ')
       }
     ],
