@@ -9,7 +9,7 @@ inputs:
   args:
     description: CLI arguments to pass to DCLint
     required: false
-    default: '["."]'
+    default: '[".", "-f", "github"]'
 
 runs:
   using: docker
