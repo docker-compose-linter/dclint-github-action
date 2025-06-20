@@ -1,16 +1,17 @@
 # DCLint GitHub Actions
 
 [![GitHub Release](https://img.shields.io/github/v/release/docker-compose-linter/dclint-github-action?logo=github&sort=semver&style=for-the-badge)](https://github.com/docker-compose-linter/dclint-github-action/releases)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/docker-compose-linter?style=for-the-badge&logo=github)](https://github.com/sponsors/docker-compose-linter)
 
 Lint Docker Compose files with [DCLint](https://github.com/zavoloklom/dclint), using GitHub Actions.
 
 This repository provides three official GitHub Actions:
 
-| Variant                         | Description                                                                  |
-| ------------------------------- | ---------------------------------------------------------------------------- |
-| Node.js (base)                  | Runs `dclint` via `npx` (requires Node in runner)                            |
-| [Docker](./docker-action)       | Runs `dclint` inside Docker container (requires Docker in runner)            |
-| [Reviewdog](./reviewdog-action) | Integrates `dclint` with [reviewdog](https://github.com/reviewdog/reviewdog) |
+| Variant        | Description                                                                  |
+| -------------- | ---------------------------------------------------------------------------- |
+| Node.js (base) | Runs `dclint` via `npx` (requires Node in runner)                            |
+| Docker         | Runs `dclint` inside Docker container (requires Docker in runner)            |
+| Reviewdog      | Integrates `dclint` with [reviewdog](https://github.com/reviewdog/reviewdog) |
 
 ## Node.js (npx) Action
 
@@ -20,9 +21,9 @@ runners).
 ### Example usage
 
 ```yaml
-- uses: zavoloklom/dclint-github-action@v1.2.0
+- uses: docker-compose-linter/dclint-github-action@v1.2.0
   with:
-    path: ./compose/
+    path: ./path-to-compose-files/
     recursive: true
 ```
 
@@ -52,9 +53,9 @@ support (default in GitHub runners).
 ### Example usage
 
 ```yaml
-- uses: zavoloklom/dclint-github-action/docker-action@v1.2.0
+- uses: docker-compose-linter/dclint-github-action/docker-action@v1.2.0
   with:
-    args: '["./compose", "-r", "--debug"]'
+    args: '["./path-to-compose-files/", "-r", "--debug"]'
 ```
 
 ### Inputs
@@ -71,7 +72,7 @@ Integrates DCLint with [Reviewdog](https://github.com/reviewdog/reviewdog) to im
 
 ```yml
 name: reviewdog
-on: [pull_request]
+on: [ pull_request ]
 jobs:
   dclint:
     name: runner / dclint
@@ -80,10 +81,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4.2.2
       - name: dclint
-        uses: zavoloklom/dclint-github-action/reviewdog-action@v1.2.0
+        uses: docker-compose-linter/dclint-github-action/reviewdog-action@v1.2.0
         with:
           reporter: github-pr-review # Default is `github-pr-check`
-          dclint_flags: ./compose/ # Default is `.`
+          dclint_flags: ./path-to-compose-files/ # Default is `.`
 ```
 
 ### Inputs
@@ -110,7 +111,7 @@ All changes are categorized and released based on [Conventional Commits](https:/
 ### Dependency Updates
 
 - The versions of `dclint` and `reviewdog` are **checked weekly** via a scheduled GitHub Action. The currently used
-  version of `dclint` is stored in the [`.VERSION_DCLINT`](./VERSION_DCLINT) file and synced across all action variants
+  version of `dclint` is stored in the [`VERSION_DCLINT`](./VERSION_DCLINT) file and synced across all action variants
   automatically.
 - If a new version is available, a **pull request is automatically created** to update all relevant files.
 
@@ -146,7 +147,9 @@ If you have any questions or suggestions, feel free to reach out:
 - **Instagram**: [zavoloklom](https://www.instagram.com/zavoloklom/)
 - **GitHub**: [zavoloklom](https://github.com/zavoloklom)
 
-Also, you can support this project with a donation:
+Also, you can support this project with a one-time donation or becoming a sponsor:
 
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=ZKLT8EJ4KWA6L)
-[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/zavoloklom)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=J8KS3RUFKSHDL)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/c/zavoloklom)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-171515?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sponsors/docker-compose-linter)
+[![Open Collective](https://img.shields.io/badge/Open%20Collective-3385FF?style=for-the-badge&logo=opencollective&logoColor=white)](https://opencollective.com/dclint)
