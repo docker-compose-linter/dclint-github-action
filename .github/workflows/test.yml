@@ -59,8 +59,7 @@ jobs:
           recursive: true
           fix: false
           dry-run: false
-          # TODO: Move formatters to main repo
-          formatter: ./formatter-github.js
+          formatter: github
           max-warnings: 0
           exclude: .github
           disable-rule: service-keys-order
@@ -97,8 +96,7 @@ jobs:
         continue-on-error: true
         uses: ./docker-action
         with:
-          # TODO: Move formatters to main repo
-          args: '["./test-data", "-r", "--debug", "-f", "./formatter-github.js"]'
+          args: '["./test-data", "-r", "--debug", "-f", "github"]'
 
       - name: Assert that DCLint failed as expected
         run: |
