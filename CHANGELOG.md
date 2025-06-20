@@ -2,6 +2,22 @@
 
 > This file was generated automatically using [@semantic-release](https://github.com/semantic-release/semantic-release).
 
+## [1.3.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.2.0...v1.3.0) (2025-06-20)
+
+### Features
+
+- change formatters to built-in
+  ([7310136](https://github.com/docker-compose-linter/dclint-github-action/commit/7310136ee8a70f07d1c987c73bb26bf1f526e0b7))
+- **reviewdog-action:** update inputs for reviewdog
+  ([0074d66](https://github.com/docker-compose-linter/dclint-github-action/commit/0074d664d510623192f48abf62977bf8bd1dfa98))
+
+### Documentation
+
+- fix path to action
+  ([811a3f2](https://github.com/docker-compose-linter/dclint-github-action/commit/811a3f2b5bfb55683c78cf3a49f72d92ca625b07))
+- update action description
+  ([db9caba](https://github.com/docker-compose-linter/dclint-github-action/commit/db9caba8317a8fa5a032e4c5efdcf319921289da))
+
 ## [1.2.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.1.1...v1.2.0) (2025-06-12)
 
 ### Features
