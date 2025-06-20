@@ -55,14 +55,14 @@ support (default in GitHub runners).
 ```yaml
 - uses: docker-compose-linter/dclint-github-action/docker-action@v1.3.0
   with:
-    args: '["./path-to-compose-files/", "-r", "--debug"]'
+    args: '["./path-to-compose-files/", "-r", "--debug", "-f", "github"]'
 ```
 
 ### Inputs
 
-| Name   | Description                      | Default |
-| ------ | -------------------------------- | ------- |
-| `args` | Arguments passed to `dclint` CLI | `["."]` |
+| Name   | Description                      | Default                 |
+| ------ | -------------------------------- | ----------------------- |
+| `args` | Arguments passed to `dclint` CLI | `[".", "-f", "github"]` |
 
 ## 🐶 Reviewdog-integrated Action
 
