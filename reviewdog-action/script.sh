@@ -23,7 +23,8 @@ npx --no-install -c "dclint -f=rdjson ${INPUT_DCLINT_FLAGS:-'.'}" \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
-      -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
+      -fail-level="${INPUT_FAIL_LEVEL}" \
+      -level="${INPUT_LEVEL}" \
       "${INPUT_REVIEWDOG_FLAGS}"
 
 reviewdog_rc=$?

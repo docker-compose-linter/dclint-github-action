@@ -89,15 +89,16 @@ jobs:
 
 ### Inputs
 
-| Name              | Description                                                                            | Default                       |
-| ----------------- | -------------------------------------------------------------------------------------- | ----------------------------- |
-| `github_token`    | GitHub token for reviewdog                                                             | `${{ secrets.GITHUB_TOKEN }}` |
-| `filter_mode`     | Filtering mode for the reviewdog command [`added`, `diff_context`, `file`, `nofilter`] | `added`                       |
-| `fail_on_error`   | Whether to fail on error                                                               | `false`                       |
-| `tool_name`       | Name for tool display in reviewdog report                                              | `dclint`                      |
-| `reporter`        | Reporter of reviewdog command [`github-pr-check`, `github-pr-review`]                  | `github-pr-check`             |
-| `reviewdog_flags` | Additional flags to pass to reviewdog                                                  |                               |
-| `dclint_flags`    | Additional CLI flags to pass to dclint                                                 | `.`                           |
+| Name              | Description                                                                                                                                                                                                                   | Default                       |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `github_token`    | GitHub token for reviewdog                                                                                                                                                                                                    | `${{ secrets.GITHUB_TOKEN }}` |
+| `tool_name`       | Name for tool display in reviewdog report                                                                                                                                                                                     | `dclint`                      |
+| `reporter`        | Reporter of reviewdog command [`github-pr-check`, `github-pr-review`]                                                                                                                                                         | `github-pr-check`             |
+| `filter_mode`     | Filtering mode for the reviewdog command [`added`, `diff_context`, `file`, `nofilter`]                                                                                                                                        | `added`                       |
+| `fail_level`      | If set to `none`, always use exit code 0 for reviewdog. Otherwise, exit code 1 for reviewdog if it finds at least 1 issue with severity greater than or equal to the given level [`none`, `any`, `info` , `warning`, `error`] | `none`                        |
+| `level`           | Report level for reviewdog [`info`, `warning`, `error`]                                                                                                                                                                       | `error`                       |
+| `reviewdog_flags` | Additional flags to pass to reviewdog                                                                                                                                                                                         |                               |
+| `dclint_flags`    | Additional CLI flags to pass to dclint                                                                                                                                                                                        | `.`                           |
 
 ### Output
 
