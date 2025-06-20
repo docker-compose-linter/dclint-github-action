@@ -29,8 +29,7 @@ inputs:
   formatter:
     description: Output formatter (e.g. stylish, json, github)
     required: false
-    # TODO: Move formatters to main repo
-    default: './formatter-github.js'
+    default: 'github'
 
   max-warnings:
     description: Maximum number of warnings allowed before failure
