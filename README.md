@@ -104,6 +104,12 @@ jobs:
 
 Reviewdog posts annotations in the PR UI. Errors do **not** fail the job by default.
 
+## Pull Request Examples
+
+Browse example pull requests in
+[docker-compose-linter/example-github-action](https://github.com/docker-compose-linter/example-github-action/pulls) to
+see how the actions runs in CI workflows.
+
 ## Versioning
 
 This repository itself is versioned using [`semantic-release`](https://github.com/semantic-release/semantic-release).
