@@ -2,6 +2,20 @@
 
 > This file was generated automatically using [@semantic-release](https://github.com/semantic-release/semantic-release).
 
+## [1.4.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.3.0...v1.4.0) (2025-06-20)
+
+### Features
+
+- **docker-action:** add github formatter as a default
+  ([38d8f01](https://github.com/docker-compose-linter/dclint-github-action/commit/38d8f013b28b5d1f3e056f5963492ab0632e31f8))
+
+### Documentation
+
+- add Pull Request Examples
+  ([74b5641](https://github.com/docker-compose-linter/dclint-github-action/commit/74b5641b0fb1d2369964686a1298e724b29ac376))
+- fix actions description
+  ([434fd32](https://github.com/docker-compose-linter/dclint-github-action/commit/434fd32f75f2a6d19ca3d0a89cd5b8a6c095e3c5))
+
 ## [1.3.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.2.0...v1.3.0) (2025-06-20)
 
 ### Features
