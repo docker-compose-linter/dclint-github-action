@@ -2,6 +2,20 @@
 
 > This file was generated automatically using [@semantic-release](https://github.com/semantic-release/semantic-release).
 
+## [1.4.1](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.4.0...v1.4.1) (2025-07-18)
+
+### Bug Fixes
+
+- change path and args positions for cli
+  ([e6c3bd3](https://github.com/docker-compose-linter/dclint-github-action/commit/e6c3bd3165c64eb8c3df34d6fc991b6891f199c3))
+
+### Dependencies
+
+- **dev:** bump conventional-changelog-conventionalcommits
+  ([fd7ca8a](https://github.com/docker-compose-linter/dclint-github-action/commit/fd7ca8a4a316e265874fee1ed8cf6e68e6772960))
+- **dev:** bump semantic-release from 24.2.5 to 24.2.7
+  ([64784f6](https://github.com/docker-compose-linter/dclint-github-action/commit/64784f631fda1e8d6f0c173be2d96a219ba8a90a))
+
 ## [1.4.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.3.0...v1.4.0) (2025-06-20)
 
 ### Features

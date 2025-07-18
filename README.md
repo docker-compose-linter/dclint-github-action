@@ -21,7 +21,7 @@ runners).
 ### Example usage
 
 ```yaml
-- uses: docker-compose-linter/dclint-github-action@v1.4.0
+- uses: docker-compose-linter/dclint-github-action@v1.4.1
   with:
     path: ./path-to-compose-files/
     recursive: true
@@ -53,7 +53,7 @@ support (default in GitHub runners).
 ### Example usage
 
 ```yaml
-- uses: docker-compose-linter/dclint-github-action/docker-action@v1.4.0
+- uses: docker-compose-linter/dclint-github-action/docker-action@v1.4.1
   with:
     args: '["./path-to-compose-files/", "-r", "--debug", "-f", "github"]'
 ```
@@ -81,7 +81,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4.2.2
       - name: dclint
-        uses: docker-compose-linter/dclint-github-action/reviewdog-action@v1.4.0
+        uses: docker-compose-linter/dclint-github-action/reviewdog-action@v1.4.1
         with:
           reporter: github-pr-review # Default is `github-pr-check`
           dclint_flags: ./path-to-compose-files/ # Default is `.`
