@@ -18,7 +18,7 @@ echo "dclint version:$(npx --no-install -c 'dclint --version')"
 echo "::endgroup::"
 
 echo "::group:: Running dclint with reviewdog 🐶 ..."
-npx --no-install -c "dclint -f=rdjson ${INPUT_DCLINT_FLAGS:-'.'}" \
+npx --no-install -c "dclint ${INPUT_DCLINT_FLAGS:-'.'} -f=rdjson" \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \

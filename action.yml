@@ -63,9 +63,9 @@ runs:
         if [[ "${{ inputs.disable-rule }}" != "" ]]; then args="$args --disable-rule ${{ inputs.disable-rule }}"; fi
         if [[ "${{ inputs.debug }}" == "true" ]]; then args="$args --debug"; fi
 
-        echo "Running: npx dclint@3.0.0 $args ${{ inputs.path }}"
+        echo "Running: npx dclint@3.0.0 ${{ inputs.path }} $args"
         set +e
-        npx dclint@3.0.0 $args ${{ inputs.path }}
+        npx dclint@3.0.0 ${{ inputs.path }} $args
         exit_code=$?
         set -e
 
