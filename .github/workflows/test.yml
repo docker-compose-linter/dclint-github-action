@@ -62,7 +62,7 @@ jobs:
           formatter: github
           max-warnings: 0
           exclude: .github
-          disable-rule: service-keys-order
+          disable-rule: service-keys-order no-unbound-port-interfaces
           debug: true
 
       - name: Assert that DCLint failed as expected
