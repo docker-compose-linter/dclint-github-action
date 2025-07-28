@@ -63,14 +63,14 @@ runs:
         if [[ "${{ inputs.disable-rule }}" != "" ]]; then args="$args --disable-rule ${{ inputs.disable-rule }}"; fi
         if [[ "${{ inputs.debug }}" == "true" ]]; then args="$args --debug"; fi
 
-        echo "Running: npx dclint@3.0.0 ${{ inputs.path }} $args"
+        echo "Running: npx dclint@3.1.0 ${{ inputs.path }} $args"
         set +e
-        npx dclint@3.0.0 ${{ inputs.path }} $args
+        npx dclint@3.1.0 ${{ inputs.path }} $args
         exit_code=$?
         set -e
 
         echo "### DCLint Linting Summary" >> $GITHUB_STEP_SUMMARY
-        echo "- Version: \`dclint@3.0.0\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Version: \`dclint@3.1.0\`" >> $GITHUB_STEP_SUMMARY
         echo "- Path: \`${{ inputs.path }}\`" >> $GITHUB_STEP_SUMMARY
         echo "- Formatter: \`${{ inputs.formatter }}\`" >> $GITHUB_STEP_SUMMARY
 
