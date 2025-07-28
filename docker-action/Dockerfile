@@ -1,2 +1,2 @@
-FROM zavoloklom/dclint:3.0.0
+FROM zavoloklom/dclint:3.1.0
 ENTRYPOINT ["dclint"]
