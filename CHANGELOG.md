@@ -2,6 +2,13 @@
 
 > This file was generated automatically using [@semantic-release](https://github.com/semantic-release/semantic-release).
 
+## [1.5.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.4.1...v1.5.0) (2025-07-28)
+
+### Features
+
+- update DCLint to v3.1.0
+  ([20abbad](https://github.com/docker-compose-linter/dclint-github-action/commit/20abbad96a3f846e789780a598cf39080bab3e83))
+
 ## [1.4.1](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.4.0...v1.4.1) (2025-07-18)
 
 ### Bug Fixes
