@@ -2,6 +2,23 @@
 
 > This file was generated automatically using [@semantic-release](https://github.com/semantic-release/semantic-release).
 
+## [1.6.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.5.0...v1.6.0) (2025-09-05)
+
+### Features
+
+- update Reviewdog to v0.21.0
+  ([41fc3a7](https://github.com/docker-compose-linter/dclint-github-action/commit/41fc3a78a700320323dc7cc10ffb7d199cd1568b))
+
+### Dependencies
+
+- **dev:** bump @semantic-release/github from 11.0.3 to 11.0.4
+  ([54d9485](https://github.com/docker-compose-linter/dclint-github-action/commit/54d9485e0d78513a2b5375fcf77129ef1e80601d))
+
+### CI/CD
+
+- **deps:** bump actions/checkout from 4 to 5
+  ([1532070](https://github.com/docker-compose-linter/dclint-github-action/commit/153207002bffd8bf6d6bd62460a6b1ebba450059))
+
 ## [1.5.0](https://github.com/docker-compose-linter/dclint-github-action/compare/v1.4.1...v1.5.0) (2025-07-28)
 
 ### Features
