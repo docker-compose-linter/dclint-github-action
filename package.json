@@ -41,7 +41,7 @@
     "husky": "9.1.7",
     "markdownlint-cli2": "0.18.1",
     "prettier": "3.5.3",
-    "semantic-release": "24.2.8"
+    "semantic-release": "25.0.1"
   },
   "engines": {
     "node": ">=18.20.0",
