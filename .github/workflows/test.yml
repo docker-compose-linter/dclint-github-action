@@ -11,7 +11,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
@@ -37,7 +37,7 @@ jobs:
     name: Node.js Action - Valid Compose
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.1
 
       - name: Run DCLint via npx on valid file
         uses: ./
@@ -48,7 +48,7 @@ jobs:
     name: Node.js Action - Invalid Compose (should fail)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.1
 
       - name: Run DCLint via npx on invalid file
         id: dclint-node
@@ -78,7 +78,7 @@ jobs:
     name: Docker Action - Valid Compose
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.1
 
       - name: Run DCLint via docker on valid file
         uses: ./docker-action
@@ -89,7 +89,7 @@ jobs:
     name: Docker Action - Invalid Compose (should fail)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.1
 
       - name: Run DCLint via docker on invalid file
         id: dclint-docker
@@ -111,7 +111,7 @@ jobs:
     name: Reviewdog Action - Valid Compose
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6.0.1
 
       - name: Run DCLint via docker on valid file
         uses: ./reviewdog-action
